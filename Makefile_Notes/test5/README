@@ -1,0 +1,32 @@
+
+%.o: %.c $(DEPS)
+	$(CC) -c -o $@ $< $(CFLAGS)
+
+hellomake: $(OBJ)
+	$(CC) -o $@ $^ $(CFLAGS)
+
+In this version, we find a new anotation in the Makefile -> "$^"
+
+Actually, the two different symbol -> "$@" and "$^" mean the either size of 
+ the ":", "$@" means the left side, while "$^" means the right side
+
+For instance, in line ->  %.o: %.c $(DEPS)
+
+the line after it $(CC) -c -o $@ $< $(CFLAGS) means 
+
+           gcc -c -o %.o %.c $(DEPS) -I . 
+
+The next level will make compiling looks more abstract but more clear
+In test6, we will devid all the source code into different subdirectoies
+1. src -> .cxx 
+2. lib -> all libraries
+3. obj -> all object files
+4. include -> all header files
+
+The directory structure look like bellow:
+ ----|      
+     |---include/
+     |---src/ 
+          |---Makefile
+          |---obj/
+          

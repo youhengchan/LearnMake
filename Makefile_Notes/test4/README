@@ -1,0 +1,19 @@
+It works pretty well, the differences between the version test3 and test4 is that we added the method to generate the .o files
+
+%.o: %.c $(DEPS)
+	$(CC) -c -o $@ $< $(CFLAGS)
+
+Now the tool "make" know how to generate the .o file by both include the .h files and .c files
+
+DEPS = hellomake.h
+
+We firstly defined the DEPS as a set of .h files on which the .c files depend
+Then defined a rule that applies to all files ending in the .o suffix
+
+There are two parameters with prefix "$" - $@ and $<, which means:
+
+$@: to put the output of the compilation in the file named on the left side of the ":" -> %.o files
+
+$<: the first item in the dependencies list, we use it here because we just got one parameters on the dependency list, So actually I guess that we can use "@" to represents all parameters on the dependency list
+
+

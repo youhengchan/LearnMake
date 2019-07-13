@@ -1,0 +1,14 @@
+There are three tips in this makefile:
+
+1) .PHONY: clean
+
+It's a rule setted for make to prevent it from doing something with a file named clean
+
+2) clean:
+	rm -f $(ODIR)/*.o *~ core $(INCDIR)/*~ 
+
+This two line define the action when typing "make clean" in the shell
+
+3) For more information, visit site:
+
+    http://www.gnu.org/software/make/manual/make.html

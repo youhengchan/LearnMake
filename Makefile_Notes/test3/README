@@ -1,0 +1,74 @@
+Explain the following commands:
+CC=gcc
+CFLAGS=-I.
+
+The following commands 
+"CC=gcc" is to define the macro (macroinstruction) for the gcc
+
+"CFLAGS" is the list of flags to pass to the compilation command
+
+***********************************************************************
+
+"-I" is a parameter to anotate position of header files, format:
+
+cc [options] [sources.cxx] -I path_of_directoris
+
+In this sample(Makefile), we use "-I.", which indicate that we look for
+ the header files in the current working diretory.
+
+The search orders:(Depending on the way to include files: "" or <>)
+
+<.h>: gcc/g++ look in following orders:
+    1."-I path_of_directories" -> specified path got checked first
+    2./usr/local/include
+    3./usr/include
+    4.cerr error
+
+".h": gcc/g++ look in following orders:
+    1.current working directory (where sources code being staged)
+    2."-I path_of_directories" -> path_of_directories 
+    3./usr/local/include
+    4./usr/include
+    5.cerr error
+
+ 
+***********************************************************************
+
+The "make" tool is already smart which knows .o file can only be got by
+ first compiling the .c file individually
+
+So when we got three files like:
+
+[chenhanxuan@idiospace test3]$ ls
+hellofunc.c  hellomake.c  hellomake.h
+
+And we create the Makefile which now lies in the folder
+
+Then when we type "make" in the shell, we will then see:
+
+[chenhanxuan@idiospace test3]$ make
+gcc -I.   -c -o hellomake.o hellomake.c
+gcc -I.   -c -o hellofunc.o hellofunc.c
+gcc -o hellomake hellomake.o hellofunc.o
+
+And then we will find not just the executable file hellomake but also
+ the .o files  
+
+[chenhanxuan@idiospace test3]$ ls
+hellofunc.c  hellomake    hellomake.h  Makefile
+hellofunc.o  hellomake.c  hellomake.o  README
+
+For small projects, the makefile in this folder is already sufficient
+But there is still one problem:
+
+**Dependency on the include files(.h)**
+
+When we change something in the header file, and rebuild the project.
+We have to build .c files as well, but tool "make" won't do it 
+automatically cause we did not add the dependencies of the projects(.h)
+
+So in the version 3th(in the folder test4)
+We will add the dependencies of the header files
+
+
+

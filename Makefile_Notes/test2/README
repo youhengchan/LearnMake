@@ -1,0 +1,3 @@
+1.When writing an gcc command in the makefile, there must be an tab before the command
+2.When finish the makefile, then type "make" in the shell, which will execute the first command in the makefile(not a right rule)
+3.But when I test it myself, I found that I can add three diffrent commands(two diffenrent gcc commands and one echo commands) in the file and use simple "make" command in the shell and execute them all.

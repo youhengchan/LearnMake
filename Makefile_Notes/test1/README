@@ -1,0 +1,3 @@
+In this sample, use following commands to generate the executable file
+gcc -o hellomake hellomake.c hellofunc.c -I.
+In test2, use the first Makefile to generate the executable output file
